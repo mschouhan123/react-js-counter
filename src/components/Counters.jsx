@@ -18,7 +18,7 @@ class Counters extends Component {
         
         const indexToUpdate = this.state.CountersItem.findIndex(item => item.id === id);
 
-       const state =   this.state.CountersItem[indexToUpdate].value++;
+    //    const state =   this.state.CountersItem[indexToUpdate].value++;
 
 
         const counters = [...this.state.CountersItem]; 
@@ -34,13 +34,27 @@ class Counters extends Component {
         
         counters[index].value ++; 
         // console.log("on increment -->  ounters[index].value  -> ",counters[index].value);
-        this.setState({CountersItem: state})
+        this.setState({counters})
     
      }
+
+     totalCount(params) {
+        
+        let totalValue = 0;
+
+        for (const item of this.state.CountersItem) {
+            totalValue += item.value;
+        }
+
+        return  totalValue;
+     }
+
+
     render() { 
         
         return (
         <div>
+            <h1>Nav bar {this.totalCount()}</h1>
             {this.state.CountersItem.map(counter => 
             <Counter  
             key={counter.id} 
